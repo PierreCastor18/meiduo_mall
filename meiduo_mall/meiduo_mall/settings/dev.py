@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     # 注册自己的应用
     # 'meiduo_mall.apps.users',
     'users.apps.UsersConfig',
+    'verifications.apps.VerificationsConfig',
 ]
 
 MIDDLEWARE = [
@@ -153,7 +154,14 @@ CACHES = {
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
-    }
+    },
+    "sms_codes": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/2",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    },
 }
 # 保存 session数据到 Redis中
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
@@ -206,4 +214,7 @@ LOGGING = {
 REST_FRAMEWORK = {
     'EXCEPTION_HANDLER': 'meiduo_mall.utils.exceptions.custom_exception_handler',
 }
+
+# 在项目配置文件中，指定使用自定义的用户模型类
+AUTH_USER_MODEL = 'users.User'
 

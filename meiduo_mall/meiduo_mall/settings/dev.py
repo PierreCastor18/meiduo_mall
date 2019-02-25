@@ -26,7 +26,8 @@ SECRET_KEY = 'a29@1vo^pb%4n6kta^5di=(%@iit%)mv$olk$sx92gjh!%ai*$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# 允许通过的ip访问
+ALLOWED_HOSTS = ['api.meiduo.site', '127.0.0.1', 'localhost']
 
 # 简化导包路径
 # 添加要导包的路径到 path 中，添加列表的第一位
@@ -44,7 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # 注册第三方应用　
     'rest_framework',   # drf框架(应用)
-
+    'corsheaders',      # 支持跨域的第三方包
 
     # 注册自己的应用
     # 'meiduo_mall.apps.users',
@@ -53,6 +54,9 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    # 支持跨域的第三方包
+    'corsheaders.middleware.CorsMiddleware',
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -218,3 +222,13 @@ REST_FRAMEWORK = {
 # 在项目配置文件中，指定使用自定义的用户模型类
 AUTH_USER_MODEL = 'users.User'
 
+# 添加白名单，允许可以访问的域名
+CORS_ORIGIN_WHITELIST = (
+    '127.0.0.1:8080',
+    'localhost:8080',
+    'www.meiduo.site:8080'
+)
+CORS_ALLOW_CREDENTIALS = True
+
+# task_reject_on_worker_lost = True
+# task_acks_late = True

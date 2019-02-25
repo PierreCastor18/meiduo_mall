@@ -6,7 +6,7 @@ from django.db import models
 
 class User(AbstractUser):
     """用户表"""
-    mobiles = models.CharField(max_length=11, verbose_name='电话号码')
+    mobile = models.CharField(max_length=11, verbose_name='电话号码')
 
     class Meta:
         db_table = 'tb_user'    # 指定表

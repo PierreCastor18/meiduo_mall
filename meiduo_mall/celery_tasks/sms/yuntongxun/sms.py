@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 
-from meiduo_mall.libs.yuntongxun.CCPRestSDK import REST
+from celery_tasks.sms.yuntongxun import REST
 
 # 说明：主账号，登陆云通讯网站后，可在"控制台-应用"中看到开发者主账号ACCOUNT SID
 _accountSid = '8a216da8635e621f0163868c871a12b6'
